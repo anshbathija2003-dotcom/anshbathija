@@ -141,6 +141,7 @@ function App() {
     });
 
     tl.to(".hero-bg-overlay", { opacity: 1, duration: 0.4, ease: "none" }, 0);
+    tl.to(".nav-name", { color: "#ffffff", duration: 0.4, ease: "none" }, 0);
 
     // Very fast fades as initially negotiated!
     tl.to(".portrait-inner-bg", { opacity: 0, duration: 0.1, ease: "power2.out" }, 0);
@@ -308,7 +309,7 @@ function App() {
 
           <div className="portrait-wrapper">
             <div className="mouse-parallax-layer" style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0 }}>
-              <img src="/lucid BG h.jpg" alt="Card Background" className="portrait-inner-bg" style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, objectFit: 'cover', zIndex: 1 }} />
+              <img src="/Wireframe 12.png" alt="Card Background" className="portrait-inner-bg" style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, objectFit: 'cover', zIndex: 1 }} />
 
               <img src="/Ansh Founder Photo Transparent.png" alt="Ansh Bathija" className="portrait-img" />
               <div className="helmet-anim-wrapper" style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, zIndex: 3 }}>
@@ -372,13 +373,20 @@ function App() {
             <span className="section-tag font-syncopate tag-reveal" style={{ marginLeft: '4rem' }}>Selected Work</span>
             <div className="projects-scroll">
               {[
-                { title: "FSAE", subtitle: "Formula Student Auto", mainImg: "/FSAE 2.png", revealImg: "/FSAE.jpg", width: "450px", height: "250px", mt: "70px" },
-                { title: "Dip Bahan", subtitle: "Urban Mobility EV", mainImg: "/DBEV 2.png", revealImg: "/DBEV.jpg", width: "680px", height: "375px", mt: "200px" },
-                { title: "SprintSync", subtitle: "Timing System for Athletes", mainImg: "/SS 2.png", revealImg: "/SS.jpg", width: "500px", height: "350px", mt: "-125px" },
-                { title: "AQA", subtitle: "Collapsible Beverage Bottle", mainImg: "/AQA 2.png", revealImg: "/AQA.jpg", width: "400px", height: "500px", mt: "40px" },
-                { title: "VOID", subtitle: "Commercial Audio Device", mainImg: "/VOID 2.png", revealImg: "/VOID.jpg", width: "450px", height: "600px", mt: "40px" }
+                { title: "FSAE", subtitle: "Formula Student Auto", mainImg: "/FSAE 2.png", revealImg: "/FSAE.jpg", width: "450px", height: "250px", mt: "70px", link: "https://www.behance.net/gallery/246015385/FSAE-Formula-Student" },
+                { title: "Dip Bahan", subtitle: "Urban Mobility EV", mainImg: "/DBEV 2.png", revealImg: "/DBEV.jpg", width: "680px", height: "375px", mt: "200px", link: "https://www.behance.net/gallery/246013859/Dipbahan-Urban-Mobility-EV" },
+                { title: "SprintSync", subtitle: "Timing System for Athletes", mainImg: "/SS 2.png", revealImg: "/SS.jpg", width: "500px", height: "350px", mt: "-125px", link: "https://www.behance.net/gallery/246080385/Sprint-Sync-Timing-System-for-Solo-Athletes" },
+                { title: "AQA", subtitle: "Collapsible Beverage Bottle", mainImg: "/AQA 2.png", revealImg: "/AQA.jpg", width: "400px", height: "500px", mt: "40px", link: "https://www.behance.net/gallery/246023977/AQA-Collapsible-Consumer-Beverage-Bottle" },
+                { title: "VOID", subtitle: "Commercial Audio Device", mainImg: "/VOID 2.png", revealImg: "/VOID.jpg", width: "450px", height: "600px", mt: "40px", link: "https://www.behance.net/gallery/247636301/VOID-Commercial-Audio-Device" }
               ].map((p, i) => (
-                <div className="project-card" key={i} style={{ width: p.width, height: p.height, marginTop: p.mt }}>
+                <a 
+                  href={p.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="project-card" 
+                  key={i} 
+                  style={{ width: p.width, height: p.height, marginTop: p.mt, display: 'block', textDecoration: 'none' }}
+                >
                   <img src={p.revealImg} className="project-img-inner" alt="inner" />
                   <div className="project-overlay">
                     <span className="font-syncopate">{p.subtitle}</span>
@@ -390,7 +398,7 @@ function App() {
                   <div className="shutter shutter-bottom">
                     <img src={p.mainImg} alt="bottom" />
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </section>
@@ -428,7 +436,7 @@ function App() {
             </div>
             <div className="footer-links font-syncopate">
               <h4>Contact</h4>
-              <a href="mailto:anshbathija2003@gmail.com">Email</a>
+              <a href="mailto:anshbathija2003@gmail.com" style={{ fontSize: '1rem', textTransform: 'lowercase' }}>anshbathija2003@gmail.com</a>
               <a href="tel:+919372535919">+91 93725 35919</a>
               <a href="#location">Mumbai, India</a>
             </div>
@@ -438,6 +446,11 @@ function App() {
               <a href="https://instagram.com">Instagram <ArrowUpRight size={16} /></a>
               <a href="https://behance.net">Behance <ArrowUpRight size={16} /></a>
             </div>
+          </div>
+
+          <div className="footer-bottom font-syncopate">
+            <p>© {new Date().getFullYear()} Ansh Bathija. All rights reserved.</p>
+            <p>Crafted with Intent.</p>
           </div>
         </footer>
       </div>
