@@ -255,7 +255,7 @@ img {
 
 .marquee-line {
   white-space: nowrap;
-  font-size: 8vw;
+  font-size: 5vw;
   color: var(--color-neon);
   text-transform: uppercase;
   display: flex;
@@ -289,13 +289,13 @@ img {
 
 .marquee-1 .marquee-inner {
   display: flex;
-  animation: scrollLeft 16s linear infinite;
+  animation: scrollLeft 12.8s linear infinite;
   min-width: 200%;
 }
 
 .marquee-2 .marquee-inner {
   display: flex;
-  animation: scrollRight 16s linear infinite;
+  animation: scrollRight 12.8s linear infinite;
   min-width: 200%;
 }
 
