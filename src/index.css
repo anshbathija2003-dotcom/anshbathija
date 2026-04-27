@@ -34,6 +34,8 @@ body {
   opacity: 0.08;
   /* increased opacity for brutalist texture */
   background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Reveal Utilities */
@@ -420,6 +422,9 @@ img {
   gap: 4rem;
   padding: 0 30vw 0 4rem;
   width: max-content;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .project-card {
@@ -432,6 +437,9 @@ img {
   cursor: pointer;
   background: var(--color-surface);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* The inner image and text (Revealed on hover) */
@@ -444,8 +452,10 @@ img {
   object-fit: cover;
   z-index: 1;
   filter: brightness(0.6);
-  transform: scale(1.1);
+  transform: scale(1.1) translateZ(0);
   transition: transform 0.8s ease;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .project-card:hover .project-img-inner {

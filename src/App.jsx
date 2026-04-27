@@ -263,7 +263,7 @@ function App() {
           trigger: projectsWrapper,
           start: "top top",
           end: "bottom bottom",
-          scrub: true,
+          scrub: 1,
           invalidateOnRefresh: true,
         }
       });
@@ -330,7 +330,7 @@ function App() {
               <div className="resume-meta font-syncopate">2025-2026 </div>
               <div className="resume-content">
                 <h3 className="font-paytone">Industrial Design at IIT Guwahati</h3>
-                <p className="typewriter">Designed and built Dip Bahan and the Bunker at IIT Guwahati, translating conceptual design into functional, experiential spaces applying DFM (Design for Manufacturing) standards.</p>
+                <p className="">Designed and built Dip Bahan and the Bunker at IIT Guwahati, translating conceptual design into functional, experiential spaces applying DFM (Design for Manufacturing) standards.</p>
                 <div className="tags font-syncopate">
                   <span className="tag">Defense </span>
                   <span className="tag">Automotive </span>
@@ -343,7 +343,7 @@ function App() {
               <div className="resume-meta font-syncopate">2022 – 2024</div>
               <div className="resume-content">
                 <h3 className="font-paytone">Lead Designer (FSAE)</h3>
-                <p className="typewriter">Spearheaded the complete design architecture for our Formula Student team. Optimized aerodynamic surfaces through rigorous simulation and defined a sophisticated ergonomic footprint tailored to high-speed track environments.</p>
+                <p className="">Spearheaded the complete design architecture for our Formula Student team. Optimized aerodynamic surfaces through rigorous simulation and defined a sophisticated ergonomic footprint tailored to high-speed track environments.</p>
                 <div className="tags font-syncopate">
                   <span className="tag">Formula Student</span>
                   <span className="tag">Aerodynamics</span>
@@ -356,7 +356,7 @@ function App() {
               <div className="resume-meta font-syncopate">2023 – 2024</div>
               <div className="resume-content">
                 <h3 className="font-paytone">Industrial Design Advisor </h3>
-                <p className="typewriter">Advised a local business in Jabalpur, Madhya Pradesh for small real exectution projects for consumer markets, selling one-off goods.</p>
+                <p className="">Advised a local business in Jabalpur, Madhya Pradesh for small real exectution projects for consumer markets, selling one-off goods.</p>
                 <div className="tags font-syncopate">
                   <span className="tag">Consumer Goods</span>
                   <span className="tag">Sustainability</span>
