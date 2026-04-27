@@ -373,11 +373,11 @@ function App() {
             <span className="section-tag font-syncopate tag-reveal" style={{ marginLeft: '4rem' }}>Selected Work</span>
             <div className="projects-scroll">
               {[
-                { title: "FSAE", subtitle: "Formula Student Auto", mainImg: "/FSAE 2.png", revealImg: "/FSAE.jpg", width: "450px", height: "250px", mt: "70px", link: "https://www.behance.net/gallery/246015385/FSAE-Formula-Student" },
-                { title: "Dip Bahan", subtitle: "Urban Mobility EV", mainImg: "/DBEV 2.png", revealImg: "/DBEV.jpg", width: "680px", height: "375px", mt: "200px", link: "https://www.behance.net/gallery/246013859/Dipbahan-Urban-Mobility-EV" },
-                { title: "SprintSync", subtitle: "Timing System for Athletes", mainImg: "/SS 2.png", revealImg: "/SS.jpg", width: "500px", height: "350px", mt: "-125px", link: "https://www.behance.net/gallery/246080385/Sprint-Sync-Timing-System-for-Solo-Athletes" },
-                { title: "AQA", subtitle: "Collapsible Beverage Bottle", mainImg: "/AQA 2.png", revealImg: "/AQA.jpg", width: "400px", height: "500px", mt: "40px", link: "https://www.behance.net/gallery/246023977/AQA-Collapsible-Consumer-Beverage-Bottle" },
-                { title: "VOID", subtitle: "Commercial Audio Device", mainImg: "/VOID 2.png", revealImg: "/VOID.jpg", width: "450px", height: "600px", mt: "40px", link: "https://www.behance.net/gallery/247636301/VOID-Commercial-Audio-Device" }
+                { title: "FSAE", subtitle: "Formula Student Auto", mainImg: "/FSAE 2.webp", revealImg: "/FSAE.webp", width: "450px", height: "250px", mt: "70px", link: "https://www.behance.net/gallery/246015385/FSAE-Formula-Student" },
+                { title: "Dip Bahan", subtitle: "Urban Mobility EV", mainImg: "/DBEV 2.webp", revealImg: "/DBEV.webp", width: "680px", height: "375px", mt: "200px", link: "https://www.behance.net/gallery/246013859/Dipbahan-Urban-Mobility-EV" },
+                { title: "SprintSync", subtitle: "Timing System for Athletes", mainImg: "/SS 2.webp", revealImg: "/SS.webp", width: "500px", height: "350px", mt: "-125px", link: "https://www.behance.net/gallery/246080385/Sprint-Sync-Timing-System-for-Solo-Athletes" },
+                { title: "AQA", subtitle: "Collapsible Beverage Bottle", mainImg: "/AQA 2.webp", revealImg: "/AQA.webp", width: "400px", height: "500px", mt: "40px", link: "https://www.behance.net/gallery/246023977/AQA-Collapsible-Consumer-Beverage-Bottle" },
+                { title: "VOID", subtitle: "Commercial Audio Device", mainImg: "/VOID 2.webp", revealImg: "/VOID.webp", width: "450px", height: "600px", mt: "40px", link: "https://www.behance.net/gallery/247636301/VOID-Commercial-Audio-Device" }
               ].map((p, i) => (
                 <a 
                   href={p.link} 
