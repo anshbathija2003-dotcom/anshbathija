@@ -220,7 +220,7 @@ img {
   object-position: center center;
   z-index: 2;
   transition: all 0.2s ease;
-  transform: scale(1) translate(0px, 0px);
+  transform: scale(0.8) translate(0px, 125px);
 }
 
 .helmet-overlay {
