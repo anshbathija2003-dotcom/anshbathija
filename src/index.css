@@ -1076,26 +1076,69 @@ footer {
     font-size: 0.75rem;
   }
 
-  /* Projects Section */
+  /* Single Column Vertical Scroll for Mobile Selected Work */
+  .projects-wrapper {
+    position: relative !important;
+    height: auto !important;
+  }
+
   .projects-section {
-    padding: 3rem 0;
-    min-height: auto;
+    position: relative !important;
+    top: auto !important;
+    min-height: auto !important;
+    padding: 2rem 0;
   }
 
   .projects-scroll {
-    gap: 1.5rem;
-    padding: 0 10vw 0 1.25rem;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.75rem !important;
+    padding: 0 1.25rem !important;
+    width: 100% !important;
+    overflow-x: visible !important;
+    transform: none !important;
   }
 
   .project-card {
-    width: 82vw !important;
-    height: clamp(320px, 50vh, 450px) !important;
+    width: 100% !important;
+    height: clamp(340px, 52vh, 480px) !important;
     margin-top: 0 !important;
-    flex-shrink: 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .shutter {
+    display: none !important;
+  }
+
+  .project-img-inner {
+    filter: brightness(0.65) !important;
+    transform: scale(1) !important;
+  }
+
+  .project-overlay {
+    opacity: 1 !important;
+    padding: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    height: 100% !important;
+    top: 0 !important;
+    transform: none !important;
+    background: linear-gradient(to top, rgba(5, 0, 20, 0.95) 0%, rgba(5, 0, 20, 0.2) 60%, transparent 100%) !important;
   }
 
   .project-overlay h3 {
-    font-size: 1.65rem;
+    font-size: 1.85rem !important;
+    margin-bottom: 0.25rem;
+    color: #fff;
+  }
+
+  .project-overlay span {
+    font-size: 0.85rem !important;
+    color: var(--color-neon);
   }
 
   .project-overlay span {
