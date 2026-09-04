@@ -234,8 +234,8 @@ img {
   z-index: 3;
   opacity: 0.15;
   mix-blend-mode: color-dodge;
-  /* Exact helmet scale and position */
-  transform: translate(50px, -55px) scale(0.8);
+  /* Desktop helmet scale and position */
+  transform: translate(70px, -35px) scale(1.08);
   animation: pulseHelmet 3s infinite alternate;
 }
 
