@@ -72,13 +72,15 @@ const achievementsData = [
 function App() {
   const containerRef = useRef(null);
   const [selectedAch, setSelectedAch] = useState(null);
+  const [activeProject, setActiveProject] = useState(null);
 
   useEffect(() => {
-    // Disable lenis temporarily while a modal is explicitly open
+    // Check if device uses touch/coarse pointer
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
+      smooth: !isTouch,
     });
 
     if (selectedAch) {
@@ -99,7 +101,6 @@ function App() {
 
   // Magnetic Interactions
   useEffect(() => {
-    // Magnetic Buttons
     const magnets = document.querySelectorAll('.btn');
     magnets.forEach((magnet) => {
       magnet.addEventListener('mousemove', (e) => {
@@ -114,8 +115,10 @@ function App() {
     });
   }, []);
 
-  // Handle Mouse Parallax Repulsion
+  // Handle Mouse Parallax Repulsion (Desktop Only)
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     const xSetter = gsap.quickTo(".mouse-parallax-layer", "x", { duration: 0.5, ease: "power3.out" });
     const ySetter = gsap.quickTo(".mouse-parallax-layer", "y", { duration: 0.5, ease: "power3.out" });
 
@@ -131,6 +134,8 @@ function App() {
   }, []);
 
   useGSAP(() => {
+    const isMobile = window.innerWidth <= 768;
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".scene-wrapper",
@@ -143,16 +148,15 @@ function App() {
     tl.to(".hero-bg-overlay", { opacity: 1, duration: 0.4, ease: "none" }, 0);
     tl.to(".nav-name", { color: "#ffffff", duration: 0.4, ease: "none" }, 0);
 
-    // Very fast fades as initially negotiated!
     tl.to(".portrait-inner-bg", { opacity: 0, duration: 0.1, ease: "power2.out" }, 0);
     tl.to(".helmet-anim-wrapper", { autoAlpha: 0, duration: 0.1, ease: "power2.out" }, 0);
 
     tl.to(".portrait-img", { filter: "grayscale(100%)", duration: 0.4 }, 0);
 
     tl.to(".portrait-wrapper", {
-      width: "25vw",
-      height: "45vh",
-      borderRadius: "15px",
+      width: isMobile ? "100vw" : "25vw",
+      height: isMobile ? "40vh" : "45vh",
+      borderRadius: isMobile ? "0px" : "15px",
       duration: 0.4,
       ease: "power2.inOut"
     }, 0);
@@ -193,7 +197,7 @@ function App() {
     const tags = gsap.utils.toArray('.tag-reveal');
     tags.forEach((tag) => {
       gsap.fromTo(tag,
-        { opacity: 0, x: -50, letterSpacing: "15px" },
+        { opacity: 0, x: -50, letterSpacing: isMobile ? "4px" : "15px" },
         {
           opacity: 1, x: 0, letterSpacing: "2px", duration: 1.2, ease: "power3.out",
           scrollTrigger: {
@@ -216,34 +220,35 @@ function App() {
       }
     });
 
-    // Parallax columns for Achievements
-    const achCards = gsap.utils.toArray('.ach-card-wrapper');
-    achCards.forEach((card, idx) => {
-      // 2nd and 4th column (idx 1 and 3, or index % 4 === 1 or 3)
-      if (idx % 4 === 1 || idx % 4 === 3) {
-        gsap.to(card, {
-          yPercent: -20, // moves up while scrolling
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".achievements-grid",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          }
-        });
-      } else {
-        gsap.to(card, {
-          yPercent: 10,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".achievements-grid",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          }
-        });
-      }
-    });
+    // Parallax columns for Achievements (Desktop only)
+    if (!isMobile) {
+      const achCards = gsap.utils.toArray('.ach-card-wrapper');
+      achCards.forEach((card, idx) => {
+        if (idx % 4 === 1 || idx % 4 === 3) {
+          gsap.to(card, {
+            yPercent: -20,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".achievements-grid",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true
+            }
+          });
+        } else {
+          gsap.to(card, {
+            yPercent: 10,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".achievements-grid",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true
+            }
+          });
+        }
+      });
+    }
 
     const projectsScroll = gsap.utils.toArray('.project-card');
     const scrollContainer = document.querySelector('.projects-scroll');
@@ -253,7 +258,6 @@ function App() {
         return -(scrollContainer.scrollWidth - window.innerWidth);
       };
 
-      // Set wrapper height mapped to width
       gsap.set(projectsWrapper, { height: () => scrollContainer.scrollWidth + window.innerHeight });
 
       gsap.to(".projects-scroll", {
@@ -270,6 +274,15 @@ function App() {
     }
   }, { scope: containerRef });
 
+  const handleProjectTouch = (e, index) => {
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      if (activeProject !== index) {
+        e.preventDefault();
+        setActiveProject(index);
+      }
+    }
+  };
+
   return (
     <div ref={containerRef} className="app-container">
       <div className="noise-overlay"></div>
@@ -279,8 +292,8 @@ function App() {
 
       <nav className="navbar">
         <a href="/" className="nav-name">
-          <span className="font-jaguar" style={{ fontSize: '70px', lineHeight: 1 }}>ANSH</span>
-          <span className="font-jaguar" style={{ fontSize: '40px', marginTop: '-15px' }}>BATHIJA</span>
+          <span className="font-jaguar nav-firstname">ANSH</span>
+          <span className="font-jaguar nav-lastname">BATHIJA</span>
         </a>
         <div className="nav-buttons">
           <a href="#about" className="btn font-paytone">
@@ -370,7 +383,7 @@ function App() {
         {/* Projects Gallery */}
         <div className="projects-wrapper">
           <section className="projects-section" id="projects">
-            <span className="section-tag font-syncopate tag-reveal" style={{ marginLeft: '4rem' }}>Selected Work</span>
+            <span className="section-tag font-syncopate tag-reveal projects-tag">Selected Work</span>
             <div className="projects-scroll">
               {[
                 { title: "FSAE", subtitle: "Formula Student Auto", mainImg: "/FSAE 2.webp", revealImg: "/FSAE.webp", width: "450px", height: "250px", mt: "70px", link: "https://www.behance.net/gallery/246015385/FSAE-Formula-Student" },
@@ -383,9 +396,10 @@ function App() {
                   href={p.link} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="project-card" 
+                  className={`project-card ${activeProject === i ? 'mobile-active' : ''}`}
                   key={i} 
-                  style={{ width: p.width, height: p.height, marginTop: p.mt, display: 'block', textDecoration: 'none' }}
+                  onClick={(e) => handleProjectTouch(e, i)}
+                  style={{ '--w': p.width, '--h': p.height, '--mt': p.mt, display: 'block', textDecoration: 'none' }}
                 >
                   <img src={p.revealImg} className="project-img-inner" alt="inner" />
                   <div className="project-overlay">

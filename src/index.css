@@ -93,6 +93,16 @@ img {
   color: #000;
 }
 
+.nav-firstname {
+  font-size: 70px;
+  line-height: 1;
+}
+
+.nav-lastname {
+  font-size: 40px;
+  margin-top: -15px;
+}
+
 .nav-buttons {
   display: flex;
   align-items: center;
@@ -146,12 +156,14 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: -2;
   background-image: url('/Wireframe 12.png');
-  background-size: cover;
-  background-position: center;
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
   transform: translateZ(0);
 }
 
@@ -159,8 +171,9 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: -1;
   background-color: var(--color-darker);
   opacity: 0;
@@ -172,8 +185,9 @@ img {
 .hero-content {
   position: sticky;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,6 +202,7 @@ img {
   transform: translate(-50%, -50%);
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   border-radius: 0;
   overflow: hidden;
   z-index: 15;
@@ -199,15 +214,13 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   object-fit: cover;
-  /* Back to normal cover for full edge-to-edge frame */
   object-position: center center;
-  /* Anchored to bottom to prioritize showing the base */
   z-index: 2;
   transition: all 0.2s ease;
-  transform: scale(0.8) translate(0px, 125px);
+  transform: scale(1) translate(0px, 0px);
 }
 
 .helmet-overlay {
@@ -221,8 +234,8 @@ img {
   z-index: 3;
   opacity: 0.15;
   mix-blend-mode: color-dodge;
-  /* Scaled by 40% and moved 400px to the Left */
-  transform: translate(70px, -35px) scale(1.08);
+  /* 50% smaller image size and moved 100px to the right */
+  transform: translate(170px, -35px) scale(0.52);
   animation: pulseHelmet 3s infinite alternate;
 }
 
@@ -429,8 +442,9 @@ img {
 
 .project-card {
   position: relative;
-  width: 450px;
-  height: 600px;
+  width: var(--w, 450px);
+  height: var(--h, 600px);
+  margin-top: var(--mt, 0px);
   border-radius: 12px;
   /* modern small round */
   overflow: hidden;
@@ -440,6 +454,22 @@ img {
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+.project-card.mobile-active .shutter-top {
+  transform: translateY(-100%);
+}
+
+.project-card.mobile-active .shutter-bottom {
+  transform: translateY(100%);
+}
+
+.project-card.mobile-active .project-overlay {
+  opacity: 1;
+}
+
+.project-card.mobile-active .project-img-inner {
+  transform: scale(1);
 }
 
 /* The inner image and text (Revealed on hover) */
@@ -937,3 +967,239 @@ footer {
 }
 
 /* Box 8 */
+
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .nav-firstname {
+    font-size: clamp(2.2rem, 9vw, 3.5rem);
+  }
+
+  .nav-lastname {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    margin-top: -6px;
+  }
+
+  .nav-buttons {
+    gap: 0.5rem;
+  }
+
+  .btn {
+    height: 48px;
+    padding: 0 1rem;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  .btn-icon {
+    width: 48px;
+  }
+
+  /* Hero & Marquee */
+  .portrait-img {
+    width: 100vw;
+    max-width: 100vw;
+    transform: scale(1) translate(0px, 0px);
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .helmet-overlay {
+    transform: translate(50px, -55px) scale(0.8);
+    object-position: center center;
+  }
+
+  .marquee-line {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .marquee-container {
+    gap: 1rem;
+  }
+
+  /* Content Sections */
+  .content-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .section-tag {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .projects-tag {
+    margin-left: 1.25rem !important;
+  }
+
+  .resume-section {
+    padding: 0;
+  }
+
+  .resume-grid {
+    gap: 1.5rem;
+  }
+
+  .resume-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .resume-item:hover {
+    transform: none;
+  }
+
+  .resume-meta {
+    font-size: 0.95rem;
+  }
+
+  .resume-content h3 {
+    font-size: 1.65rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .resume-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .tags {
+    gap: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  /* Projects Section */
+  .projects-section {
+    padding: 3rem 0;
+    min-height: auto;
+  }
+
+  .projects-scroll {
+    gap: 1.5rem;
+    padding: 0 10vw 0 1.25rem;
+  }
+
+  .project-card {
+    width: 82vw !important;
+    height: clamp(320px, 50vh, 450px) !important;
+    margin-top: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .project-overlay h3 {
+    font-size: 1.65rem;
+  }
+
+  .project-overlay span {
+    font-size: 0.85rem;
+  }
+
+  /* Achievements Section */
+  .achievements-section {
+    padding: 3rem 0 6rem 0;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1.25rem;
+  }
+
+  .ach-card:nth-child(n) {
+    top: 0 !important;
+    left: 0 !important;
+  }
+
+  .ach-card {
+    aspect-ratio: 1.2;
+  }
+
+  .ach-title-bar {
+    opacity: 1;
+    padding: 1.25rem;
+  }
+
+  .ach-title-bar h4 {
+    font-size: 1.35rem;
+  }
+
+  .ach-title-bar span {
+    font-size: 0.75rem;
+  }
+
+  /* Modal Popup */
+  .ach-modal-overlay {
+    padding: 1rem;
+  }
+
+  .ach-modal-content {
+    min-height: auto;
+    max-height: 85vh;
+    width: 100%;
+  }
+
+  .ach-modal-text {
+    padding: 2.5rem 1.25rem 2rem;
+  }
+
+  .ach-modal-text h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .ach-modal-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .ach-modal-close {
+    top: 1rem;
+    right: 1rem;
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 5rem 1.25rem 2rem;
+  }
+
+  .footer-marquee h2 {
+    font-size: 16vw;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-info h3 {
+    font-size: 2.5rem;
+  }
+
+  .footer-info p {
+    font-size: 1rem;
+  }
+
+  .footer-links a {
+    font-size: 1.15rem;
+    word-break: break-all;
+  }
+
+  .footer-bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    font-size: 0.7rem;
+  }
+}
