@@ -154,9 +154,9 @@ function App() {
     tl.to(".portrait-img", { filter: "grayscale(100%)", duration: 0.4 }, 0);
 
     tl.to(".portrait-wrapper", {
-      width: isMobile ? "100vw" : "25vw",
-      height: isMobile ? "40vh" : "45vh",
-      borderRadius: isMobile ? "0px" : "15px",
+      width: isMobile ? "92vw" : "45vw",
+      height: isMobile ? "65vh" : "70vh",
+      borderRadius: isMobile ? "10px" : "20px",
       duration: 0.4,
       ease: "power2.inOut"
     }, 0);

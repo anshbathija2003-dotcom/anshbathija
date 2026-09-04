@@ -234,8 +234,8 @@ img {
   z-index: 3;
   opacity: 0.15;
   mix-blend-mode: color-dodge;
-  /* 50% smaller image size and moved 100px to the right */
-  transform: translate(170px, -35px) scale(0.52);
+  /* Exact helmet scale and position */
+  transform: translate(50px, -55px) scale(0.8);
   animation: pulseHelmet 3s infinite alternate;
 }
 
