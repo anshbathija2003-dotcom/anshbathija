@@ -72,10 +72,8 @@ const achievementsData = [
 function App() {
   const containerRef = useRef(null);
   const [selectedAch, setSelectedAch] = useState(null);
-  const [activeProject, setActiveProject] = useState(null);
 
   useEffect(() => {
-    // Check if device uses touch/coarse pointer
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     const lenis = new Lenis({
       duration: 1.2,
@@ -154,9 +152,9 @@ function App() {
     tl.to(".portrait-img", { filter: "grayscale(100%)", duration: 0.4 }, 0);
 
     tl.to(".portrait-wrapper", {
-      width: isMobile ? "92vw" : "45vw",
-      height: isMobile ? "65vh" : "70vh",
-      borderRadius: isMobile ? "10px" : "20px",
+      width: isMobile ? "88vw" : "32vw",
+      height: isMobile ? "55vh" : "55vh",
+      borderRadius: "16px",
       duration: 0.4,
       ease: "power2.inOut"
     }, 0);
@@ -220,7 +218,7 @@ function App() {
       }
     });
 
-    // Parallax columns for Achievements (Desktop only)
+    // Parallax columns & Horizontal scroll (Desktop only)
     if (!isMobile) {
       const achCards = gsap.utils.toArray('.ach-card-wrapper');
       achCards.forEach((card, idx) => {
@@ -248,40 +246,31 @@ function App() {
           });
         }
       });
-    }
 
-    const projectsScroll = gsap.utils.toArray('.project-card');
-    const scrollContainer = document.querySelector('.projects-scroll');
-    const projectsWrapper = document.querySelector('.projects-wrapper');
-    if (projectsScroll.length > 0 && scrollContainer && projectsWrapper) {
-      const getScrollAmount = () => {
-        return -(scrollContainer.scrollWidth - window.innerWidth);
-      };
+      const projectsScroll = gsap.utils.toArray('.project-card');
+      const scrollContainer = document.querySelector('.projects-scroll');
+      const projectsWrapper = document.querySelector('.projects-wrapper');
+      if (projectsScroll.length > 0 && scrollContainer && projectsWrapper) {
+        const getScrollAmount = () => {
+          return -(scrollContainer.scrollWidth - window.innerWidth);
+        };
 
-      gsap.set(projectsWrapper, { height: () => scrollContainer.scrollWidth + window.innerHeight });
+        gsap.set(projectsWrapper, { height: () => scrollContainer.scrollWidth + window.innerHeight });
 
-      gsap.to(".projects-scroll", {
-        x: getScrollAmount,
-        ease: "none",
-        scrollTrigger: {
-          trigger: projectsWrapper,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1,
-          invalidateOnRefresh: true,
-        }
-      });
-    }
-  }, { scope: containerRef });
-
-  const handleProjectTouch = (e, index) => {
-    if (window.matchMedia("(pointer: coarse)").matches) {
-      if (activeProject !== index) {
-        e.preventDefault();
-        setActiveProject(index);
+        gsap.to(".projects-scroll", {
+          x: getScrollAmount,
+          ease: "none",
+          scrollTrigger: {
+            trigger: projectsWrapper,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          }
+        });
       }
     }
-  };
+  }, { scope: containerRef });
 
   return (
     <div ref={containerRef} className="app-container">
@@ -396,15 +385,17 @@ function App() {
                   href={p.link} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className={`project-card ${activeProject === i ? 'mobile-active' : ''}`}
+                  className="project-card"
                   key={i} 
-                  onClick={(e) => handleProjectTouch(e, i)}
                   style={{ '--w': p.width, '--h': p.height, '--mt': p.mt, display: 'block', textDecoration: 'none' }}
                 >
                   <img src={p.revealImg} className="project-img-inner" alt="inner" />
                   <div className="project-overlay">
                     <span className="font-syncopate">{p.subtitle}</span>
                     <h3 className="font-paytone">{p.title}</h3>
+                    <div className="project-link-badge">
+                      View Project <ArrowUpRight size={14} />
+                    </div>
                   </div>
                   <div className="shutter shutter-top">
                     <img src={p.mainImg} alt="top" />
